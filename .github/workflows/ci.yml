@@ -1,34 +1,23 @@
-name: Simple CI Pipeline
+name: Read README
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  build:
+  read-readme:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code
+      # Step 1 — Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node (you can switch to Python, Go, Java, etc.)
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Run tests
-      - name: Run tests
-        run: npm test
-
-      # Step 5 (Optional): Build the project
-      - name: Build project
-        run: npm run build
+      # Step 2 — Display README.md content
+      - name: Read README file
+        run: |
+          echo "------ README.md CONTENT ------"
+          cat README.md
+          echo "------ END OF README ------"
